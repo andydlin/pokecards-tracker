@@ -1,0 +1,544 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pokémon Price Watch — Buy / Wait</title>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+.jumpnav{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);left:50%;transform:translateX(-50%);width:min(70rem,100% - 2rem);z-index:50}
+.jumpnav-row{display:flex;gap:.35rem;overflow-x:auto;padding:.45rem .55rem;border-radius:9999px;background:color-mix(in oklab, var(--color-base-100) 92%, transparent);backdrop-filter:blur(8px);box-shadow:0 10px 25px rgba(0,0,0,.18)}
+body{padding-top:calc(env(safe-area-inset-top,0px) + 62px)}
+@media (min-width:768px){.pcard .collapse-content{grid-template-rows:1fr !important;visibility:visible !important}.pcard .collapse-title{pointer-events:none}}
+@media (max-width:640px){.sum-table th:nth-child(4),.sum-table td:nth-child(4),.sum-table th:nth-child(6),.sum-table td:nth-child(6){display:none}}
+</style></head>
+<body class="bg-base-200 min-h-screen"><div class="max-w-6xl mx-auto p-4 space-y-4">
+  <nav class="jumpnav"><div class="jumpnav-row"><a href="#summary" class="btn btn-primary btn-sm rounded-full whitespace-nowrap min-h-10">Summary</a><a href="#december" class="btn btn-outline btn-sm rounded-full whitespace-nowrap min-h-10">December outlook</a><a href="#cards" class="btn btn-outline btn-sm rounded-full whitespace-nowrap min-h-10">Cards List</a></div></nav>
+  <div class="hero bg-base-100 rounded-box border shadow-sm"><div class="hero-content text-center py-8"><div>
+    <h1 class="text-3xl font-bold">Pokémon Price Watch</h1>
+    <p class="py-2 opacity-80">Lowest active eBay prices tracked daily · sold history back to Jan 2026 from PriceCharting (eBay solds) + live eBay · Buy / Wait calls per card</p>
+    <p class="text-sm opacity-60">Checked: Mon Oct 26, 2026 · Raw / ungraded NM comps only · Totals include shipping</p>
+    <div class="flex gap-2 justify-center items-center mt-3 flex-wrap">
+      <span class="badge badge-success">BUY NOW ×4</span><span class="badge badge-info">BUYABLE / FAIR ×5</span><span class="badge badge-warning">WAIT ×3</span>
+      <label class="swap swap-rotate btn btn-ghost btn-sm rounded-full">
+        <input type="checkbox" id="themeToggle">
+        <span class="swap-on text-xs">☀ Light</span><span class="swap-off text-xs">🌙 Dark</span>
+      </label>
+    </div></div></div></div>
+
+  <div class="stats stats-vertical sm:stats-horizontal bg-base-100 border shadow-sm w-full">
+    <div class="stat"><div class="stat-title">Basket — all 12 at lowest</div><div class="stat-value text-2xl tabular-nums">$805.59</div><div class="stat-desc"><span class="text-success">vs yesterday ▼ $7.18 (0.9%)</span></div></div>
+    <div class="stat"><div class="stat-title">Biggest mover today</div><div class="stat-value text-2xl">Eevee ex <span class="text-success"> ▼ $5.90 (29.5%)</span></div><div class="stat-desc">Largest 1-day move in lowest price</div></div>
+    <div class="stat"><div class="stat-title">Buy now</div><div class="stat-value text-2xl">4 cards</div><div class="stat-desc">Priced below their 2026 trading range</div></div>
+  </div>
+
+  <div id="summary" class="card bg-base-100 border shadow-sm scroll-mt-24"><div class="card-body">
+    <h2 class="card-title">Buy / Wait summary</h2>
+    <div class="hidden md:block overflow-x-auto"><table class="table table-zebra w-full sum-table">
+      <thead><tr><th>#</th><th>Card</th><th>Lowest now</th><th>2026 median</th><th>Call</th><th>Good buy at</th></tr></thead>
+      <tbody><tr data-callgroup="wait"><td>1</td>
+      <td><div class="flex items-center gap-2"><img src="https://archives.bulbagarden.net/media/upload/9/96/CharizardVBrilliantStars154.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><a href="#card-1" class="link link-hover font-medium">Charizard V — cs5aC 132/127 SR Alt Art</a></div></td>
+      <td><div class="font-bold tabular-nums">$74.51</div><div class="text-xs"><span class="opacity-60">1d — 0.0%</span></div></td><td class="tabular-nums">$83.07</td>
+      <td><span class="badge badge-warning badge-sm whitespace-nowrap">WAIT</span></td><td>≤ $70 — or offer $65–70 on your $88 listing</td></tr><tr data-callgroup="buynow"><td>2</td>
+      <td><div class="flex items-center gap-2"><img src="https://archives.bulbagarden.net/media/upload/2/2a/GlaceonVMAXEvolvingSkies209.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><a href="#card-2" class="link link-hover font-medium">Glaceon VMAX — CS4aC 168/132 HR</a></div></td>
+      <td><div class="font-bold tabular-nums">$117.99</div><div class="text-xs"><span class="opacity-60">1d — 0.0%</span></div></td><td class="tabular-nums">$138.88</td>
+      <td><span class="badge badge-success badge-sm whitespace-nowrap">BUY NOW</span></td><td>Buy at ≤ $130 — $117.99 qualifies</td></tr><tr data-callgroup="wait"><td>3</td>
+      <td><div class="flex items-center gap-2"><div class="w-8 aspect-[3/4] rounded bg-warning/20 flex items-center justify-center text-center text-[9px] leading-tight p-1 shrink-0">066/S-P<br>no official art</div><a href="#card-3" class="link link-hover font-medium">Pikachu — 066/S-P VW ID.3 Promo</a></div></td>
+      <td><div class="font-bold tabular-nums">$55.83</div><div class="text-xs"><span class="text-error">1d ▲ $0.13 (0.2%)</span></div></td><td class="tabular-nums">$54.05 (totals, Sep–Oct)</td>
+      <td><span class="badge badge-warning badge-sm whitespace-nowrap">WAIT</span></td><td>≤ $45</td></tr><tr data-callgroup="fair"><td>4</td>
+      <td><div class="flex items-center gap-2"><img src="https://archives.bulbagarden.net/media/upload/9/9f/SylveonVEvolvingSkies184.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><a href="#card-4" class="link link-hover font-medium">Sylveon V — CS4aC 148/132 SR</a></div></td>
+      <td><div class="font-bold tabular-nums">$72.88</div><div class="text-xs"><span class="text-success">1d ▼ $0.02 (0.0%)</span></div></td><td class="tabular-nums">$76.81</td>
+      <td><span class="badge badge-info badge-sm whitespace-nowrap">FAIR</span></td><td>≤ $65</td></tr><tr data-callgroup="fair"><td>5</td>
+      <td><div class="flex items-center gap-2"><img src="https://archives.bulbagarden.net/media/upload/f/ff/GlaceonVEvolvingSkies175.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><a href="#card-5" class="link link-hover font-medium">Glaceon V — CS4aC 141/132 SR</a></div></td>
+      <td><div class="font-bold tabular-nums">$52.16</div><div class="text-xs"><span class="opacity-60">1d — 0.0%</span></div></td><td class="tabular-nums">$47.50</td>
+      <td><span class="badge badge-info badge-sm whitespace-nowrap">FAIR</span></td><td>≤ $50</td></tr><tr data-callgroup="fair"><td>6</td>
+      <td><div class="flex items-center gap-2"><img src="https://archives.bulbagarden.net/media/upload/5/5f/VaporeonVSWSHPromo181.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><a href="#card-6" class="link link-hover font-medium">Vaporeon V — CS4aC 139/132 SR</a></div></td>
+      <td><div class="font-bold tabular-nums">$49.22</div><div class="text-xs"><span class="opacity-60">1d — 0.0%</span></div></td><td class="tabular-nums">$54.49</td>
+      <td><span class="badge badge-info badge-sm whitespace-nowrap">BUYABLE</span></td><td>Buy at ≤ $52 — $49.22 qualifies</td></tr><tr data-callgroup="buynow"><td>7</td>
+      <td><div class="flex items-center gap-2"><img src="https://archives.bulbagarden.net/media/upload/7/77/FlareonVSWSHPromo179.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><a href="#card-7" class="link link-hover font-medium">Flareon V — CS4aC 137/132 SR</a></div></td>
+      <td><div class="font-bold tabular-nums">$44.98</div><div class="text-xs"><span class="opacity-60">1d — 0.0%</span></div></td><td class="tabular-nums">$44.39</td>
+      <td><span class="badge badge-success badge-sm whitespace-nowrap">BUY NOW</span></td><td>Buy at ≤ $50 — $44.98 qualifies</td></tr><tr data-callgroup="fair"><td>8</td>
+      <td><div class="flex items-center gap-2"><img src="https://archives.bulbagarden.net/media/upload/2/26/FlareonVMAXSWSHPromo180.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/9/91/VaporeonVMAXSWSHPromo182.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/8/8a/JolteonVMAXSWSHPromo184.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><a href="#card-8" class="link link-hover font-medium">CSHC VMAX 3-Card Set</a></div></td>
+      <td><div class="font-bold tabular-nums">$69.90</div><div class="text-xs"><span class="opacity-60">1d — 0.0%</span></div></td><td class="tabular-nums">$69.90</td>
+      <td><span class="badge badge-info badge-sm whitespace-nowrap">FAIR</span></td><td>≤ $66 typical — $69.90 acceptable</td></tr><tr data-callgroup="buynow"><td>9a</td>
+      <td><div class="flex items-center gap-2"><img src="https://archives.bulbagarden.net/media/upload/c/c6/EeveeexPrismaticEvolutions167.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><a href="#card-9-single" class="link link-hover font-medium">Eevee ex — CSV9.5C 245 SAR (single)</a></div></td>
+      <td><div class="font-bold tabular-nums">$14.10</div><div class="text-xs"><span class="text-success">1d ▼ $5.90 (29.5%)</span></div></td><td class="tabular-nums">$18.50</td>
+      <td><span class="badge badge-success badge-sm whitespace-nowrap">BUY NOW</span></td><td>≤ $17 — $14.10 qualifies</td></tr><tr data-callgroup="fair"><td>9b</td>
+      <td><div class="flex items-center gap-2"><img src="https://archives.bulbagarden.net/media/upload/c/c6/EeveeexPrismaticEvolutions167.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/7/7f/EeveeexSVPPromo174.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><a href="#card-9-set" class="link link-hover font-medium">Eevee ex — 245 & 246 SAR 2-Card Set</a></div></td>
+      <td><div class="font-bold tabular-nums">$42.51</div><div class="text-xs"><span class="text-success">1d ▼ $1.39 (3.2%)</span></div></td><td class="tabular-nums">$42.03</td>
+      <td><span class="badge badge-info badge-sm whitespace-nowrap">FAIR</span></td><td>Fair at ~$42–44</td></tr><tr data-callgroup="wait"><td>10</td>
+      <td><div class="flex items-center gap-2"><img src="https://archives.bulbagarden.net/media/upload/d/d8/SylveonexPrismaticEvolutions156.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><a href="#card-10" class="link link-hover font-medium">Sylveon ex — CSV9.5C 233/208 SAR</a></div></td>
+      <td><div class="font-bold tabular-nums">$46.51</div><div class="text-xs"><span class="opacity-60">1d — 0.0%</span></div></td><td class="tabular-nums">$46.90</td>
+      <td><span class="badge badge-warning badge-sm whitespace-nowrap">WAIT</span></td><td>≤ $43</td></tr><tr data-callgroup="buynow"><td>11</td>
+      <td><div class="flex items-center gap-2"><img src="https://archives.bulbagarden.net/media/upload/4/42/CharizardVSTARSWSHPromo262.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/8/83/MewtwoVSTARCrownZenithGG44.jpg" alt="" loading="lazy" class="w-8 aspect-[3/4] object-cover rounded shadow shrink-0"><a href="#card-11" class="link link-hover font-medium">Charizard & Mewtwo VSTAR — 143/S-P & 144/S-P Set</a></div></td>
+      <td><div class="font-bold tabular-nums">$165.00</div><div class="text-xs"><span class="opacity-60">1d — 0.0%</span></div></td><td class="tabular-nums">$165.00</td>
+      <td><span class="badge badge-success badge-sm whitespace-nowrap">BUY NOW</span></td><td>Buy at ≤ $175 — $165 qualifies</td></tr></tbody></table></div>
+    <div class="md:hidden"><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="wait">
+      <div class="flex items-start gap-2"><img src="https://archives.bulbagarden.net/media/upload/9/96/CharizardVBrilliantStars154.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0">
+        <a href="#card-1" class="link link-hover font-medium flex-1">Charizard V — cs5aC 132/127 SR Alt Art</a>
+        <span class="badge badge-warning badge-sm whitespace-nowrap shrink-0">WAIT</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$74.51</span> · <span class="opacity-60">1d — 0.0%</span> · <span class="text-success">since Oct 22 ▼ $13.49 (15.3%)</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $83.07 · Good buy: ≤ $70 — or offer $65–70 on your $88 listing</div></div><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="buynow">
+      <div class="flex items-start gap-2"><img src="https://archives.bulbagarden.net/media/upload/2/2a/GlaceonVMAXEvolvingSkies209.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0">
+        <a href="#card-2" class="link link-hover font-medium flex-1">Glaceon VMAX — CS4aC 168/132 HR</a>
+        <span class="badge badge-success badge-sm whitespace-nowrap shrink-0">BUY NOW</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$117.99</span> · <span class="opacity-60">1d — 0.0%</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $138.88 · Good buy: Buy at ≤ $130 — $117.99 qualifies</div></div><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="wait">
+      <div class="flex items-start gap-2"><div class="w-10 aspect-[3/4] rounded bg-warning/20 flex items-center justify-center text-center text-[9px] leading-tight p-1 shrink-0">066/S-P<br>no official art</div>
+        <a href="#card-3" class="link link-hover font-medium flex-1">Pikachu — 066/S-P VW ID.3 Promo</a>
+        <span class="badge badge-warning badge-sm whitespace-nowrap shrink-0">WAIT</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$55.83</span> · <span class="text-error">1d ▲ $0.13 (0.2%)</span> · <span class="text-success">since Oct 22 ▼ $19.73 (26.1%)</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $54.05 (totals, Sep–Oct) · Good buy: ≤ $45</div></div><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="fair">
+      <div class="flex items-start gap-2"><img src="https://archives.bulbagarden.net/media/upload/9/9f/SylveonVEvolvingSkies184.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0">
+        <a href="#card-4" class="link link-hover font-medium flex-1">Sylveon V — CS4aC 148/132 SR</a>
+        <span class="badge badge-info badge-sm whitespace-nowrap shrink-0">FAIR</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$72.88</span> · <span class="text-success">1d ▼ $0.02 (0.0%)</span> · <span class="text-error">since Oct 22 ▲ $2.08 (2.9%)</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $76.81 · Good buy: ≤ $65</div></div><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="fair">
+      <div class="flex items-start gap-2"><img src="https://archives.bulbagarden.net/media/upload/f/ff/GlaceonVEvolvingSkies175.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0">
+        <a href="#card-5" class="link link-hover font-medium flex-1">Glaceon V — CS4aC 141/132 SR</a>
+        <span class="badge badge-info badge-sm whitespace-nowrap shrink-0">FAIR</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$52.16</span> · <span class="opacity-60">1d — 0.0%</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $47.50 · Good buy: ≤ $50</div></div><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="fair">
+      <div class="flex items-start gap-2"><img src="https://archives.bulbagarden.net/media/upload/5/5f/VaporeonVSWSHPromo181.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0">
+        <a href="#card-6" class="link link-hover font-medium flex-1">Vaporeon V — CS4aC 139/132 SR</a>
+        <span class="badge badge-info badge-sm whitespace-nowrap shrink-0">BUYABLE</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$49.22</span> · <span class="opacity-60">1d — 0.0%</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $54.49 · Good buy: Buy at ≤ $52 — $49.22 qualifies</div></div><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="buynow">
+      <div class="flex items-start gap-2"><img src="https://archives.bulbagarden.net/media/upload/7/77/FlareonVSWSHPromo179.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0">
+        <a href="#card-7" class="link link-hover font-medium flex-1">Flareon V — CS4aC 137/132 SR</a>
+        <span class="badge badge-success badge-sm whitespace-nowrap shrink-0">BUY NOW</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$44.98</span> · <span class="opacity-60">1d — 0.0%</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $44.39 · Good buy: Buy at ≤ $50 — $44.98 qualifies</div></div><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="fair">
+      <div class="flex items-start gap-2"><img src="https://archives.bulbagarden.net/media/upload/2/26/FlareonVMAXSWSHPromo180.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/9/91/VaporeonVMAXSWSHPromo182.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/8/8a/JolteonVMAXSWSHPromo184.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0">
+        <a href="#card-8" class="link link-hover font-medium flex-1">CSHC VMAX 3-Card Set</a>
+        <span class="badge badge-info badge-sm whitespace-nowrap shrink-0">FAIR</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$69.90</span> · <span class="opacity-60">1d — 0.0%</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $69.90 · Good buy: ≤ $66 typical — $69.90 acceptable</div></div><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="buynow">
+      <div class="flex items-start gap-2"><img src="https://archives.bulbagarden.net/media/upload/c/c6/EeveeexPrismaticEvolutions167.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0">
+        <a href="#card-9-single" class="link link-hover font-medium flex-1">Eevee ex — CSV9.5C 245 SAR (single)</a>
+        <span class="badge badge-success badge-sm whitespace-nowrap shrink-0">BUY NOW</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$14.10</span> · <span class="text-success">1d ▼ $5.90 (29.5%)</span> · <span class="text-success">since Oct 22 ▼ $5.90 (29.5%)</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $18.50 · Good buy: ≤ $17 — $14.10 qualifies</div></div><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="fair">
+      <div class="flex items-start gap-2"><img src="https://archives.bulbagarden.net/media/upload/c/c6/EeveeexPrismaticEvolutions167.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/7/7f/EeveeexSVPPromo174.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0">
+        <a href="#card-9-set" class="link link-hover font-medium flex-1">Eevee ex — 245 & 246 SAR 2-Card Set</a>
+        <span class="badge badge-info badge-sm whitespace-nowrap shrink-0">FAIR</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$42.51</span> · <span class="text-success">1d ▼ $1.39 (3.2%)</span> · <span class="text-success">since Oct 24 ▼ $1.39 (3.2%)</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $42.03 · Good buy: Fair at ~$42–44</div></div><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="wait">
+      <div class="flex items-start gap-2"><img src="https://archives.bulbagarden.net/media/upload/d/d8/SylveonexPrismaticEvolutions156.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0">
+        <a href="#card-10" class="link link-hover font-medium flex-1">Sylveon ex — CSV9.5C 233/208 SAR</a>
+        <span class="badge badge-warning badge-sm whitespace-nowrap shrink-0">WAIT</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$46.51</span> · <span class="opacity-60">1d — 0.0%</span> · <span class="text-success">since Oct 22 ▼ $2.98 (6.0%)</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $46.90 · Good buy: ≤ $43</div></div><div class="py-3 border-b border-base-200 last:border-0" data-callgroup="buynow">
+      <div class="flex items-start gap-2"><img src="https://archives.bulbagarden.net/media/upload/4/42/CharizardVSTARSWSHPromo262.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/8/83/MewtwoVSTARCrownZenithGG44.jpg" alt="" loading="lazy" class="w-10 aspect-[3/4] object-cover rounded shadow shrink-0">
+        <a href="#card-11" class="link link-hover font-medium flex-1">Charizard & Mewtwo VSTAR — 143/S-P & 144/S-P Set</a>
+        <span class="badge badge-success badge-sm whitespace-nowrap shrink-0">BUY NOW</span></div>
+      <div class="mt-1 ml-12 text-sm"><span class="font-bold tabular-nums">$165.00</span> · <span class="opacity-60">1d — 0.0%</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+      <div class="ml-12 text-xs opacity-70">Median $165.00 · Good buy: Buy at ≤ $175 — $165 qualifies</div></div></div>
+    <p class="text-xs opacity-60">Predictions are estimates from sold-price medians and trend direction — thin markets (Pikachu, both sets) carry low confidence and are labelled as such on their cards.</p>
+  </div></div>
+
+  <div id="december" class="card bg-base-100 border shadow-sm scroll-mt-24"><div class="card-body">
+    <h2 class="card-title">December outlook</h2>
+    <p class="text-sm">Last December was <b>not</b> a sale month for these cards (raw-only Terapeak, Nov 2025 → Dec 2025 → Jan 2026; full data in december-seasonality-2025.csv). Prices were flat Nov→Dec for Glaceon VMAX, Sylveon V, Glaceon V, Vaporeon V, and Flareon V (which rose in January).</p>
+    <p class="text-sm"><span class="badge badge-warning badge-sm whitespace-nowrap">LIKELY LOWER</span> <b>Charizard V</b> — falling 2026 trend plus last year's one real December dip (~$48–53 → ~$37–50). <b>Sylveon ex</b> — trend only (post-launch slide from ~$102; no Dec 2025 exists, released Jun 2026). <b>Pikachu</b> — slight dip last December, thin data.</p>
+    <p class="text-sm"><span class="badge badge-info badge-sm whitespace-nowrap">NO DEC DISCOUNT EXPECTED</span> Glaceon VMAX, Flareon V, Sylveon V, Glaceon V, Vaporeon V, Eevee ex single &amp; set — flat last December or no seasonal pattern; buy on target price, not the calendar.</p>
+    <p class="text-sm"><span class="badge badge-ghost badge-sm whitespace-nowrap">CAN'T MEASURE</span> CSHC set (December rests on one trio sale) and Charizard &amp; Mewtwo set (Terapeak only sees its sealed boxes, not the loose pair).</p>
+  </div></div>
+
+  <section id="cards" class="scroll-mt-24 space-y-4">
+  <div class="flex gap-2 flex-wrap items-center" id="filters">
+    <span class="text-sm font-semibold mr-1">Show:</span>
+    <button class="btn btn-sm rounded-full btn-primary" data-filter="all">All</button>
+    <button class="btn btn-sm rounded-full btn-outline" data-filter="buynow">BUY NOW</button>
+    <button class="btn btn-sm rounded-full btn-outline" data-filter="fair">FAIR / BUYABLE</button>
+    <button class="btn btn-sm rounded-full btn-outline" data-filter="wait">WAIT</button>
+  </div>
+  <div class="grid gap-4">
+    <div id="card-1" data-callgroup="wait" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><img src="https://archives.bulbagarden.net/media/upload/9/96/CharizardVBrilliantStars154.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">Charizard V — cs5aC 132/127 SR Alt Art</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$74.51</span> · <span class="text-success">since Oct 22 ▼ $13.49 (15.3%)</span></div>
+          </div>
+          <span class="badge badge-warning whitespace-nowrap shrink-0">WAIT</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$74.51</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$83.07</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Falling</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: Jun–Oct 2026 · 26 sales</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-1"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-1"></canvas></div></div>
+      </div>
+      <p class="text-sm">September peaked at an $86.49 median, then October dropped to $52–70 clearing. Your $88 TCGcard-China listing is priced like September. The $74.51 lowest is below the year median but from a 12-feedback seller using sample photos.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> ≤ $70 — or offer $65–70 on your $88 listing</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/198618087929" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div>
+    <div id="card-2" data-callgroup="buynow" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><img src="https://archives.bulbagarden.net/media/upload/2/2a/GlaceonVMAXEvolvingSkies209.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">Glaceon VMAX — CS4aC 168/132 HR</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$117.99</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+          </div>
+          <span class="badge badge-success whitespace-nowrap shrink-0">BUY NOW</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$117.99</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$138.88</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Flat to rising</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: Jan–Oct 2026 · 23 sales</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-2"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-2"></canvas></div></div>
+      </div>
+      <p class="text-sm">Below every single Sep–Oct sale (the cheapest was $125) and 15% under the 2026 median. Sep–Oct were this card's strongest months of the year.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> Buy at ≤ $130 — $117.99 qualifies</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/376372033094" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div>
+    <div id="card-3" data-callgroup="wait" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><div class="w-12 aspect-[3/4] rounded bg-warning/20 flex items-center justify-center text-center text-[9px] leading-tight p-1 shrink-0">066/S-P<br>no official art</div></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">Pikachu — 066/S-P VW ID.3 Promo</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$55.83</span> · <span class="text-success">since Oct 22 ▼ $19.73 (26.1%)</span></div>
+          </div>
+          <span class="badge badge-warning whitespace-nowrap shrink-0">WAIT</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$55.83</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$54.05 (totals, Sep–Oct)</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Falling from Sep–Oct highs</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: 2026 · 74 raw units (Terapeak)</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-3"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-3"></canvas></div></div>
+      </div>
+      <p class="text-sm">Terapeak found what PriceCharting could not: 68 raw sales in Jan–Jun, ordinary singles clustering $26–$43 — the card spent most of the year well below today's ask. $55.83 is above that cluster and above the Sep–Oct totals median.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> ≤ $45</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/800610603343" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div>
+    <div id="card-4" data-callgroup="fair" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><img src="https://archives.bulbagarden.net/media/upload/9/9f/SylveonVEvolvingSkies184.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">Sylveon V — CS4aC 148/132 SR</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$72.88</span> · <span class="text-error">since Oct 22 ▲ $2.08 (2.9%)</span></div>
+          </div>
+          <span class="badge badge-info whitespace-nowrap shrink-0">FAIR</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$72.88</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$76.81</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Sep spike, year cluster lower</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: Jun–Oct 2026 · 25 sales (PC); 174 raw units (Terapeak)</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-4"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-4"></canvas></div></div>
+      </div>
+      <p class="text-sm">$72.88 is at the bottom of October's dated sales ($70.80–$77.31), but Terapeak shows the year's real centre is lower: 174 raw units clustering $47–$70. This is paying recent-peak prices, not a below-market price — fair, no rush.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> ≤ $65</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/398448942461" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div>
+    <div id="card-5" data-callgroup="fair" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><img src="https://archives.bulbagarden.net/media/upload/f/ff/GlaceonVEvolvingSkies175.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">Glaceon V — CS4aC 141/132 SR</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$52.16</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+          </div>
+          <span class="badge badge-info whitespace-nowrap shrink-0">FAIR</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$52.16</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$47.50</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Cooled, now flat</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: Jan–Oct 2026 · 29 sales</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-5"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-5"></canvas></div></div>
+      </div>
+      <p class="text-sm">Rose from ~$30 (Jan–May) to $61–68 (Jun–Jul), then cooled to $50–55 (Aug–Oct). $52.16 matches recent months but sits above the full-year median.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> ≤ $50</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/388834101413" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div>
+    <div id="card-6" data-callgroup="fair" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><img src="https://archives.bulbagarden.net/media/upload/5/5f/VaporeonVSWSHPromo181.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">Vaporeon V — CS4aC 139/132 SR</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$49.22</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+          </div>
+          <span class="badge badge-info whitespace-nowrap shrink-0">BUYABLE</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$49.22</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$54.49</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Flat, volatile</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: Jun–Oct 2026 · 18 sales</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-6"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-6"></canvas></div></div>
+      </div>
+      <p class="text-sm">$49.22 is ~10% below the 2026 median; most sales cluster $47–60. Monthly medians bounce $45–67, so expect swings, not a trend.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> Buy at ≤ $52 — $49.22 qualifies</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/406009794534" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div>
+    <div id="card-7" data-callgroup="buynow" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><img src="https://archives.bulbagarden.net/media/upload/7/77/FlareonVSWSHPromo179.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">Flareon V — CS4aC 137/132 SR</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$44.98</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+          </div>
+          <span class="badge badge-success whitespace-nowrap shrink-0">BUY NOW</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$44.98</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$44.39</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Rising</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: May–Oct 2026 · 23 sales</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-7"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-7"></canvas></div></div>
+      </div>
+      <p class="text-sm">The median climbed steadily from $29 in May to $51–53 in Aug–Oct. $44.98 is $6–8 below where this card has actually been trading lately — the strongest buy signal here.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> Buy at ≤ $50 — $44.98 qualifies</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/137666772586" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div>
+    <div id="card-8" data-callgroup="fair" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><img src="https://archives.bulbagarden.net/media/upload/2/26/FlareonVMAXSWSHPromo180.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/9/91/VaporeonVMAXSWSHPromo182.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/8/8a/JolteonVMAXSWSHPromo184.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">CSHC VMAX 3-Card Set</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$69.90</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+          </div>
+          <span class="badge badge-info whitespace-nowrap shrink-0">FAIR</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$69.90</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$69.90</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Flat, near top of range</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: 2026 · Terapeak trio rows $54–$71</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-8"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-8"></canvas></div></div>
+      </div>
+      <p class="text-sm">Terapeak grouped rows show the same listing title selling repeatedly at $54.50–$65.62 (9 sold at $65.62 in October). $69.90 is near the top of where this set actually trades, not the middle — fair, but not a deal.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> ≤ $66 typical — $69.90 acceptable</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/357429842401" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div>
+    <div id="card-9-single" data-callgroup="buynow" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><img src="https://archives.bulbagarden.net/media/upload/c/c6/EeveeexPrismaticEvolutions167.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">Eevee ex — CSV9.5C 245 SAR (single)</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$14.10</span> · <span class="text-success">since Oct 22 ▼ $5.90 (29.5%)</span></div>
+          </div>
+          <span class="badge badge-success whitespace-nowrap shrink-0">BUY NOW</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$14.10</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$18.50</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Lowest dropped below target</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: Oct 2026 only · 8 sales</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-9-single"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-9-single"></canvas></div></div>
+      </div>
+      <p class="text-sm">Flipped from WAIT on Oct 26: the standing $20 listing was repriced to $39.99, and a new verified listing at $14.10 free shipping (Emerald Raven TCG) undercuts October's $18.50 median and the $17 good-buy target. October headline sales ran $9.50–$24.99, so $14.10 sits in the lower half of actual trades.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> ≤ $17 — $14.10 qualifies</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/137860300459" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div>
+    <div id="card-9-set" data-callgroup="fair" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><img src="https://archives.bulbagarden.net/media/upload/c/c6/EeveeexPrismaticEvolutions167.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/7/7f/EeveeexSVPPromo174.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">Eevee ex — 245 & 246 SAR 2-Card Set</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$42.51</span> · <span class="text-success">since Oct 24 ▼ $1.39 (3.2%)</span></div>
+          </div>
+          <span class="badge badge-info whitespace-nowrap shrink-0">FAIR</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$42.51</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$42.03</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Steady since Jul</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: Jul–Oct 2026 · 15 raw set sales (Terapeak)</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-9-set"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-9-set"></canvas></div></div>
+      </div>
+      <p class="text-sm">Terapeak supplied the missing history: 15 raw set sales averaging $42.03, fixed sets $41–$55, first sale Jul 8. $42.51 (new seller TCGcard-CardSeek, Oct 26) sits right at the traded average; the $43.90 PremeCollectibles listing is still active as a fallback, marked Last one.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> Fair at ~$42–44</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/318932641205" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div>
+    <div id="card-10" data-callgroup="wait" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><img src="https://archives.bulbagarden.net/media/upload/d/d8/SylveonexPrismaticEvolutions156.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">Sylveon ex — CSV9.5C 233/208 SAR</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$46.51</span> · <span class="text-success">since Oct 22 ▼ $2.98 (6.0%)</span></div>
+          </div>
+          <span class="badge badge-warning whitespace-nowrap shrink-0">WAIT</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$46.51</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$46.90</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Falling from launch</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: Oct 2026 · 22 sales (PC); Jun launch avg ~$102 (Terapeak)</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-10"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-10"></canvas></div></div>
+      </div>
+      <p class="text-sm">Terapeak shows this card launched at a ~$102 average in June and has been sliding ever since — October's $46.90 median is already less than half the launch level, and the last week fell to $42.66. Still falling, so wait.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> ≤ $43</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/147392910344" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div>
+    <div id="card-11" data-callgroup="buynow" class="collapse collapse-arrow bg-base-100 border shadow-sm pcard scroll-mt-24">
+      <input type="checkbox" class="md:hidden">
+      <div class="collapse-title">
+        <div class="flex items-center gap-3 pr-6">
+          <div class="flex gap-1"><img src="https://archives.bulbagarden.net/media/upload/4/42/CharizardVSTARSWSHPromo262.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"><img src="https://archives.bulbagarden.net/media/upload/8/83/MewtwoVSTARCrownZenithGG44.jpg" alt="" loading="lazy" class="w-12 aspect-[3/4] object-cover rounded shadow shrink-0"></div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-base leading-snug">Charizard & Mewtwo VSTAR — 143/S-P & 144/S-P Set</div>
+            <div class="text-sm"><span class="font-bold tabular-nums">$165.00</span> · <span class="opacity-60">since Oct 22 — 0.0%</span></div>
+          </div>
+          <span class="badge badge-success whitespace-nowrap shrink-0">BUY NOW</span>
+        </div>
+      </div>
+      <div class="collapse-content">
+      <div class="px-4 pb-4 space-y-3">
+      <div class="stats stats-horizontal shadow-none bg-base-200 w-full">
+        <div class="stat py-2"><div class="stat-title text-xs">Lowest now</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$165.00</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">2026 sold median</div><div class="stat-value text-lg tabular-nums" style="white-space:normal">$165.00</div></div>
+        <div class="stat py-2"><div class="stat-title text-xs">Trend</div><div class="stat-value text-lg" style="white-space:normal">Rising</div></div>
+      </div>
+      <p class="text-xs opacity-70">Sold coverage: May–Oct 2026 · 9 sales</p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><p class="text-xs font-semibold mb-1">2026 sold median by month (dashed = lowest now)</p><div class="h-44"><canvas id="m-11"></canvas></div></div>
+        <div><p class="text-xs font-semibold mb-1">Daily lowest active (our checks)</p><div class="h-44"><canvas id="d-11"></canvas></div></div>
+      </div>
+      <p class="text-sm">Rose from $111 in May to a $165–183 band in Aug–Oct. $165 is the all-history median and the bottom of the recent range.</p>
+      <p class="text-sm"><span class="font-semibold">Good buy at:</span> Buy at ≤ $175 — $165 qualifies</p>
+      <div class="flex justify-end"><a class="btn btn-primary btn-sm" href="https://www.ebay.com/itm/800214104462" target="_blank" rel="noopener">Lowest listing on eBay</a></div>
+      </div></div>
+    </div></div>
+  </section>
+
+  <div class="collapse collapse-plus bg-base-100 border shadow-sm">
+    <input type="checkbox">
+    <div class="collapse-title font-semibold">How to read this</div>
+    <div class="collapse-content text-sm space-y-1">
+    <ul class="list-disc pl-5 space-y-1">
+      <li><b>Sold history:</b> PriceCharting aggregates eBay solds and shows the ~30 most recent per card (headline prices, before shipping); graded slabs and mis-titled cards were filtered out by title/photo. Live eBay sold checks cover the last ~90 days. Full data: sold-history-2026.csv (154 sales) and sold-monthly-2026.csv.</li>
+      <li><b>Coverage limits:</b> only Glaceon VMAX and Glaceon V have readable sales back to January. Charizard V / Sylveon V start in June; the Terastal Gathering cards released Jun 12, 2026 and their readable raw record is October only; the Pikachu promo has just 7 sales (Sep–Oct) plus Terapeak volume; the Eevee set's history comes from Terapeak grouped rows.</li>
+      <li><b>Charizard rule:</b> titles lie — a NEW lowest Charizard listing is photo-verified as the 132/127 alt art before it counts (the standing verified lowest is spot-checked weekly), and your $88 TCGcard-China listing is watched for selling/ending/repricing.</li>
+      <li><b>Card images:</b> official artwork (English/Japanese printings of the same art) via Bulbagarden Archives. The Pikachu 066/S-P VW promo has no official image available anywhere, so it shows a placeholder instead of an eBay photo.</li>
+      <li>Prices refresh daily (~9:20am PT) in this chat's side thread. Browsing only — nothing is bought or bid on.</li>
+    </ul>
+    </div>
+  </div>
+</div>
+<script>
+const DATA = {"1": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [null, null, null, null, null, 80.29, 82.5, 81.84, 86.49, 52.0], "current": 74.51, "dailyLabels": ["10-22", "10-24", "10-25", "10-26"], "daily": [88.0, 74.51, 74.51, 74.51]}, "2": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [129.0, null, 155.14, 128.0, 137.13, 141.54, 142.3, 138.88, 161.27, 155.88], "current": 117.99, "dailyLabels": ["10-22", "10-24", "10-25", "10-26"], "daily": [117.99, 117.99, 117.99, 117.99]}, "3": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [null, null, null, null, null, null, null, null, 46.0, 59.0], "current": 55.83, "dailyLabels": ["10-22", "10-24", "10-25", "10-26"], "daily": [75.56, 55.7, 55.7, 55.83]}, "4": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [null, null, null, null, null, 64.99, 81.99, 76.0, 89.58, 65.0], "current": 72.88, "dailyLabels": ["10-22", "10-24", "10-25", "10-26"], "daily": [70.8, 72.87, 72.9, 72.88]}, "5": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [34.78, 29.75, null, 28.0, 34.5, 61.28, 68.33, 49.99, 55.63, 53.52], "current": 52.16, "dailyLabels": ["10-22", "10-24", "10-25", "10-26"], "daily": [52.16, 52.16, 52.16, 52.16]}, "6": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [null, null, null, null, null, 50.0, 66.99, 55.99, 45.0, 55.94], "current": 49.22, "dailyLabels": ["10-22", "10-24", "10-25", "10-26"], "daily": [49.22, 49.22, 49.22, 49.22]}, "7": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [null, null, null, null, 28.88, 44.39, 39.0, 51.0, 51.7, 52.88], "current": 44.98, "dailyLabels": ["10-22", "10-24", "10-25", "10-26"], "daily": [44.98, 44.98, 44.98, 44.98]}, "8": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [null, null, null, null, null, null, null, null, 69.9, 69.9], "current": 69.9, "dailyLabels": ["10-22", "10-24", "10-25", "10-26"], "daily": [69.9, 69.9, 69.9, 69.9]}, "9-single": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [null, null, null, null, null, null, null, null, null, 18.5], "current": 14.1, "dailyLabels": ["10-22", "10-24", "10-25", "10-26"], "daily": [20.0, 20.0, 20.0, 14.1]}, "9-set": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [null, null, null, null, null, null, null, null, null, null], "current": 42.51, "dailyLabels": ["10-24", "10-25", "10-26"], "daily": [43.9, 43.9, 42.51]}, "10": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [null, null, null, null, null, null, null, null, null, 46.9], "current": 46.51, "dailyLabels": ["10-22", "10-24", "10-25", "10-26"], "daily": [49.49, 46.51, 46.51, 46.51]}, "11": {"labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], "medians": [null, null, null, null, 110.66, 148.69, 113.55, 174.0, 165.0, 182.73], "current": 165.0, "dailyLabels": ["10-22", "10-24", "10-25", "10-26"], "daily": [165.0, 165.0, 165.0, 165.0]}};
+const grid = 'rgba(148,163,184,.15)', tick = '#a6adbb';
+for (const [no, d] of Object.entries(DATA)) {
+  const mc = document.getElementById('m-' + no);
+  if (mc) new Chart(mc, {type:'line', data:{labels:d.labels, datasets:[
+    {label:'Sold median', data:d.medians, borderColor:'#38bdf8', backgroundColor:'#38bdf8', tension:.3, spanGaps:true},
+    {label:'Lowest now', data:d.labels.map(()=>d.current), borderColor:'#fbbf24', borderDash:[5,4], pointRadius:0}]},
+    options:{maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{ticks:{color:tick},grid:{color:grid}}, y:{ticks:{color:tick, callback:v=>'$'+v},grid:{color:grid}}}}});
+  const dc = document.getElementById('d-' + no);
+  if (dc) new Chart(dc, {type:'line', data:{labels:d.dailyLabels, datasets:[
+    {label:'Lowest active', data:d.daily, borderColor:'#a78bfa', backgroundColor:'#a78bfa', tension:.2}]},
+    options:{maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{ticks:{color:tick},grid:{color:grid}}, y:{ticks:{color:tick, callback:v=>'$'+v},grid:{color:grid}}}}});
+}
+document.querySelectorAll('#filters [data-filter]').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('#filters [data-filter]').forEach(b => { b.classList.remove('btn-primary'); b.classList.add('btn-outline'); });
+  btn.classList.add('btn-primary'); btn.classList.remove('btn-outline');
+  const f = btn.dataset.filter;
+  document.querySelectorAll('[data-callgroup]').forEach(el => { el.style.display = (f === 'all' || el.dataset.callgroup === f) ? '' : 'none'; });
+}));
+const tt = document.getElementById('themeToggle');
+const saved = localStorage.getItem('ppw-theme');
+if (saved) { document.documentElement.dataset.theme = saved; tt.checked = (saved === 'light'); }
+tt.addEventListener('change', () => { const t = tt.checked ? 'light' : 'dark'; document.documentElement.dataset.theme = t; localStorage.setItem('ppw-theme', t); });
+</script></body></html>
