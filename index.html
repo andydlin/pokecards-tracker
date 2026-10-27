@@ -4375,8 +4375,9 @@
 </script>
 <style>
 body{padding-top:env(safe-area-inset-top,0px)}
+.collapse.open{grid-template-rows:max-content 1fr !important}
 .collapse>.collapse-content{display:none}
-.collapse.open>.collapse-content{display:block;content-visibility:visible;visibility:visible;min-height:fit-content}
+.collapse.open>.collapse-content{display:block;content-visibility:visible !important;visibility:visible !important;overflow:visible !important;min-height:fit-content}
 .collapse>.collapse-title{cursor:pointer}
 .collapse.open>.collapse-title::after{transform:translateY(-50%) rotate(225deg) !important}
 </style></head>
